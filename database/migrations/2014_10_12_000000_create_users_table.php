@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('mobile')->unique();
-            $table->enum('type', ['vendor', 'user', 'staff'])->default('user'); // Set default to 'user'
+            $table->enum('type', ['vendor', 'user', 'staff','admin'])->default('user'); // Set default to 'user'
             $table->string('email')->unique();
             $table->string('city')->nullable();
             $table->string('password');
