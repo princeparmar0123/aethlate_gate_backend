@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ResponseController extends Controller
 {
-     /**
+    /**
      * success response method.
      *
      * @return \Illuminate\Http\Response

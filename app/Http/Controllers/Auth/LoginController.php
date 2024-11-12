@@ -44,7 +44,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-
+        Session::flush();
         if ($request->input('type') == 704) {
             if ($user->type === 'admin') {
                 # Destroying session for verifying otp
@@ -57,7 +57,6 @@ class LoginController extends Controller
                         'toname' => 'Admin',
                         'otp' => $otp->otp
                     ],
-                  
                 ];
                 if (!env('MAIL_FROM_ADDRESS')) {
                     return redirect()->back()->with('error', 'Environment variable is missing. Please check the configuration and clear the config.');

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
@@ -23,7 +24,10 @@ class User extends Authenticatable
         'city',
         'mobile',
         'password',
-        'type'
+        'type',
+        'is_approved',
+        'longitude',
+        'latitude'
     ];
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +48,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
+
+    public function sports()
+    {
+        return $this->hasMany(Sports::class);
+    }
+
+    public function complexes()
+    {
+        return $this->hasMany(Complex::class);
+    }
+
+    public function packages()
+    {
+        return $this->hasMany(Packages::class);
+    }
+
+    public function getUserId(){
+        return Auth::user()->id;
+    }
 }

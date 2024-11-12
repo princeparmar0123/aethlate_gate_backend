@@ -16,9 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('mobile')->unique();
             $table->enum('type', ['vendor', 'user', 'staff','admin'])->default('user'); // Set default to 'user'
+            $table->string('is_approved')->default(0); // Set default value to false (0)
             $table->string('email')->unique();
             $table->string('city')->nullable();
             $table->string('password');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('otp')->unique()->nullable();
             $table->string('otp_created_at')->nullable();
             $table->string('termsofservice')->nullable();

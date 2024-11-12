@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\SportsController;
+use App\Http\Controllers\Backend\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -32,7 +34,8 @@ Route::prefix('/admin')->group(function () {
     Route::get('otp/verify/form', [LoginController::class, 'otpVerifyForm'])->name('otp.verify.form');
     Route::post('otp/verify', [LoginController::class, 'otpVerify'])->name('otp.verify');
     // Route::group(['middleware' => ['admin', 'xss']], function () {
-    Route::group(['middleware' => ['admin']], function () {
+
+    Route::group(['middleware' => ['admin','auth']], function () {
 
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -40,20 +43,16 @@ Route::prefix('/admin')->group(function () {
         Route::get('setting/change/password', [SettingController::class, 'index'])->name('admin.change.password');
         Route::post('password-change', [SettingController::class, 'changePassword'])->name('admin.update.password');
 
-        //   #Parent Category
-        //   Route::get('parent/category', [ParentController::class, 'catIndex'])->name('parent.category.index');
-        //   Route::post('parent/category/store', [ParentController::class, 'catStore'])->name('parent.cat.store');
-        //   Route::post('parent/category/edit/{id}', [ParentController::class, 'catEdit'])->name('parent.cat.edit.store');
-        //   Route::get('parent/category/delete/{id}', [ParentController::class, 'catDelete'])->name('parent.cat.delete');
-        //   Route::post('parent/category/status', [ParentController::class, 'catStatus'])->name('parent.cat.status');
+          #Sports
+          Route::get('sports', [SportsController::class, 'index'])->name('sports');
+          Route::post('sports/store', [SportsController::class, 'store'])->name('sport.store');
+          Route::post('sports/edit/{id}', [SportsController::class, 'edit'])->name('sport.edit.store');
+          Route::get('sports/delete/{id}', [SportsController::class, 'delete'])->name('sport.delete');
 
-        //   #Product
-        //   Route::get('product', [ProductController::class, 'index'])->name('product.index');
-        //   Route::get('product/create', [ProductController::class, 'create'])->name('product.create');
-        //   Route::post('product/store', [ProductController::class, 'store'])->name('product.store');
-        //   Route::get('product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-        //   Route::post('product/edit/{id}', [ProductController::class, 'update'])->name('product.update');
-        //   Route::get('product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+          #Vendor 
+          Route::get('vendor', [VendorController::class, 'index'])->name('vendor.index');
+          Route::get('vendor/{status}/approval/{user}/status', [VendorController::class, 'approvalStatus'])->name('vendor.approval.status');
+          Route::get('vendor/{user}/details', [VendorController::class, 'vendorDetails'])->name('vendor.details');
 
         //   #Blog
         //   Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
