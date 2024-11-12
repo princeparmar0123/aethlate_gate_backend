@@ -754,7 +754,7 @@ $(document).ready(function() {
     //     '</div>' +
     //     '</div>' +
     //     '</div>';
-    $("body").append(customize_link);
+    // $("body").append(customize_link);
     $('.add-setting').on("click", function(e) {
         e.preventDefault();
         $('.preview-toggle.sidebar-settings').addClass('show-settings');

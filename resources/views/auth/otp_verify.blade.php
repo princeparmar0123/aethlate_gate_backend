@@ -62,7 +62,7 @@
                                 maxlength=1>
                             <hr class="mt-4">
                             <input name="otp" required id="realOtp" style="display: none;" /> <!-- Hidden input field for real OTP -->
-                            <button style="background: #ff9f43!important;color:white;" type="submit"
+                            <button style="background: #000000!important;color:white;" type="submit"
                                 class='btn btn-warning btn-block mt-4 mb-4 customBtn'>Verify</button>
                         </form>
                     </div>
